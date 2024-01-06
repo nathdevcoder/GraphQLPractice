@@ -7,7 +7,9 @@
     "dev": "concurrently \"tsc -w\" \"nodemon dist/index.js\"",
     "nodemon": "nodemon index.js",
     "tsc": "tsc -w",
-    "build": "tsc", 
+    "build": "tsc",
+    "test": "mocha",
+    "devtest": "mocha --watch",
     "start": "node dist/index.js"
   },
   "keywords": [],
@@ -15,10 +17,16 @@
   "license": "ISC",
   "dependencies": {
     "@apollo/server": "^4.9.5",
-    "graphql": "^16.8.1"
+    "graphql": "^16.8.1",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
+    "@graphql-tools/mock": "^9.0.0",
+    "@graphql-tools/schema": "^10.0.2",
+    "chai": "^4.4.0",
+    "chai-graphql": "^4.0.0",
     "concurrently": "^8.2.2",
+    "mocha": "^10.2.0",
     "nodemon": "^3.0.2",
     "typescript": "^5.3.3"
   }
