@@ -12,3 +12,9 @@ type UserType = {
     role: RoleType
     dateCreated: Date | string
 }
+
+type AuthInputType = { 
+    email: string
+    role: RoleType
+    password: string
+}
