@@ -2,7 +2,7 @@ import { authenticated, authorized } from "@Root/Auth/Auth";
 
 
 
-function books (_: null,__:null,___: any) {
+function books() {
   return [
     {
       title: 'The Awakening',
@@ -16,5 +16,5 @@ function books (_: null,__:null,___: any) {
 }
 
 export default {
-  books: authenticated(authorized('MEMBER', books))
+  books: authenticated<any, any, any, any>(authorized('MEMBER', books))
 };
