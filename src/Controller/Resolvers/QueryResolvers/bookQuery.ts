@@ -1,17 +1,20 @@
+import { authenticated, authorized } from "@Root/Auth/Auth"; 
 
 
 
-
-const BookQuery = {
-    books: () => [
-        {
-          title: 'The Awakening',
-          author: 'Kate Chopin',
-        },
-        {
-          title: 'City of Glass',
-          author: 'Paul Auster',
-        },
-    ],
+function books (_: null,__:null,___: any) {
+  return [
+    {
+      title: 'The Awakening',
+      author: 'Kate Chopin',
+    },
+    {
+      title: 'City of Glass',
+      author: 'Paul Auster',
+    },
+  ]
 }
-export default BookQuery;
+
+export default {
+  books: authenticated(authorized('MEMBER', books))
+};
