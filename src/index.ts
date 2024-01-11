@@ -4,7 +4,6 @@ import resolvers from './Controller/Resolvers';
 import typeDefs from './Controller/TypeDefs';
 import mongoose from 'mongoose';
 import { ContextFunctionType  } from './@types/server';
-import { GetUser } from './Model/User';
 import { VerifyToken } from './Auth/UserToken';
 
 

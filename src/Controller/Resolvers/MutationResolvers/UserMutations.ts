@@ -5,7 +5,6 @@ import { CreateToken } from "@Auth/UserToken";
 import { authenticated } from "@Auth/Auth";
 import { VerifyPassword } from "@Auth/UserPassword";
 
-import { AuthenticationError } from "@ErrorHandlers/ClientErrors";
 import { EmailNotFoundError, WrongPasswordError, } from "@ErrorHandlers/UIErrors";
 import { BadGateway, InternalServerError } from "@Root/Errors/ServerErrors";
 
