@@ -1,12 +1,7 @@
+import { GraphQLFieldResolver } from "graphql";
 
+type ResolverType<T, R, P = undefined> = GraphQLFieldResolver<P, ContextType, T, Promise<R>>
+ 
+export type AuthResolverType =  ResolverType <AuthInputType, UserType>
 
-type UserSchemaType = {
-    userName: string
-    description: string 
-    avatar: string
-    email: string
-    password: string 
-    id: string  
-    role: RoleType
-    dateCreated: Date | string
-}
+export type DelUserResolverType =  ResolverType <{email: string}, {message: string}>

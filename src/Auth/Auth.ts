@@ -2,16 +2,16 @@ import { GraphQLFieldResolver, GraphQLResolveInfo } from "graphql";
 import { AuthenticationError, AuthorizationError } from "@ErrorHandlers/ClientErrors";
 
 
-type authFnArgsType<P, C, A, R> = (
+type authFnArgsType<P, A, R> = (
   root: P,
   args: A,
-  context: C & { user: UserType },
+  context: ContextType,
   info: GraphQLResolveInfo
 ) => R
 
-export const authenticated = <P, C, A, R>(
-  next: GraphQLFieldResolver<P, C, A, R>
-): authFnArgsType<P, C, A, R> => (root, args, context, info) => {
+export const authenticated = <P, A, R>(
+  next: GraphQLFieldResolver<P, ContextType, A, R>
+): authFnArgsType<P,  A, R> => (root, args, context, info) => {
   if (!context.user) {
     throw AuthenticationError
   }
@@ -20,9 +20,9 @@ export const authenticated = <P, C, A, R>(
 
 export const authorized = <P, C, A, R>(
   role: RoleType,
-  next: GraphQLFieldResolver<P, C, A, R>
-): authFnArgsType<P, C, A, R> => (root, args, context, info) => {
-  if (context.user.role !== role) {
+  next: GraphQLFieldResolver<P, ContextType, A, R>
+): authFnArgsType<P,  A, R> => (root, args, context, info) => {
+  if (context.user?.role !== role) {
     throw AuthorizationError
   }
   return next(root, args, context, info)

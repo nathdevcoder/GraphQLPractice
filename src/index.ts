@@ -1,8 +1,11 @@
 import { ApolloServer } from '@apollo/server';
-import { StandaloneServerContextFunctionArgument, startStandaloneServer } from '@apollo/server/standalone';
+import { startStandaloneServer } from '@apollo/server/standalone';
 import resolvers from './Controller/Resolvers';
 import typeDefs from './Controller/TypeDefs';
 import mongoose from 'mongoose';
+import { ContextFunctionType  } from './@types/server';
+import { GetUser } from './Model/User';
+import { VerifyToken } from './Auth/UserToken';
 
 
 const port = (process.env.PORT || 4000) as number
@@ -13,14 +16,17 @@ const server = new ApolloServer({
     resolvers, 
 });
 
-const context = async ({ req }: StandaloneServerContextFunctionArgument ) => {
-  return { token: req.headers.token }
+const context:ContextFunctionType = async ({ req } ) => {
+  const token =  req.headers.token as string
+  if(!token) return {user: null}
+  const user = await VerifyToken(token) 
+  return { user }
 }
 
 (async ()=>{
   try { 
     await mongoose.connect(database || "mongodb://localhost:27017", );
-    console.log('connected to database');
+    console.log('🚀 connected to database');
     const { url } = await startStandaloneServer(server, { context, listen: { port } });
     console.log(`🚀  Server ready at: ${url}`);
   } catch (error:unknown) {
