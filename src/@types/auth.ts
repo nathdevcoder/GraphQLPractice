@@ -5,8 +5,11 @@ type TokenType = {
     id: string
 } 
 
+type authResponseType = Omit<UserType, 'accessToken' > | null
+type UserResponseType = Promise<authResponseType> 
+
 type ContextType = {
-    user: UserType | null
+    user: authResponseType
 }
 
 type UserSchemaType = {
@@ -32,9 +35,7 @@ type UserType = {
     description: string
     accessToken: string
     refreshToken: string
-}
-
-type UserResponseType = Promise<Omit<UserType, 'accessToken' | 'refreshToken' >> 
+} 
 
 type AuthInputType = { 
     email: string
@@ -42,5 +43,5 @@ type AuthInputType = {
     password: string
 } 
 
-type RefreshTokenInputType = Pick<UserType, 'refreshToken'>
-type RegisterInputType = Omit<UserSchemaType, 'refreshToken' | 'id' | 'dateCreated' | 'role' >
+type RefreshTokenInputType =  Pick<UserType, 'refreshToken'> 
+type RegisterInputType =  Omit<UserSchemaType, 'refreshToken' | 'id' | 'dateCreated' | 'role' > 

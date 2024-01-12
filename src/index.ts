@@ -15,7 +15,7 @@ const server = new ApolloServer({
 });
 
 const context:ContextFunctionType = async ({ req } ) => {
-  const token =  req.headers.token as string
+  const token =  req.headers.authorization as string 
   if(!token) return {user: null}
   const user = await VerifyAccessToken(token) 
   return { user }

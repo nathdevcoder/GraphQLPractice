@@ -24,7 +24,7 @@ export async function VerifyRefreshToken(refreshToken: string) {
   })
 }
 
-export async function VerifyAccessToken(token: string): Promise<UserType | null> {
+export async function VerifyAccessToken(token: string): UserResponseType {
   try {
     const userToken = jwt.verify(token, SECRET) as TokenType
     if(!userToken) return null 

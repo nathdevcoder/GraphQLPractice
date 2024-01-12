@@ -26,6 +26,10 @@ export async function GetUser(id: string) {
   return await User.findById(id)
 } 
 
+export async function GetUserByEmail(email: string) {
+  return await User.findOne({email})
+} 
+
 export async function LoginUser(id: Types.ObjectId, refreshToken: string) {
   return await User.findByIdAndUpdate(id, {refreshToken})
 } 

@@ -16,5 +16,5 @@ function books() {
 }
 
 export default {
-  books: authenticated(authorized('MEMBER', books))
+  books: authenticated(authorized('USER', books))
 };
