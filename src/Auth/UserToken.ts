@@ -10,7 +10,7 @@ export function CreateToken({id, role}: TokenType) {
   const refreshToken = jwt.sign({id, role}, REFRESH );
   return {accessToken, refreshToken}
 }
-
+ 
 export async function VerifyRefreshToken(refreshToken: string) {
   const userToken = jwt.verify(refreshToken, REFRESH) as TokenType
   if(!userToken) return null 

@@ -10,7 +10,7 @@ type ContextType = {
 }
 
 type UserSchemaType = {
-    userName: string
+    name: string
     description: string 
     avatar: string
     email: string
@@ -41,3 +41,6 @@ type AuthInputType = {
     role: RoleType
     password: string
 } 
+
+type RefreshTokenInputType = Pick<UserType, 'refreshToken'>
+type RegisterInputType = Omit<UserSchemaType, 'refreshToken' | 'id' | 'dateCreated' | 'role' >

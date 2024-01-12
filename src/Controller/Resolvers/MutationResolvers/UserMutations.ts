@@ -27,7 +27,7 @@ const login:AuthResolverType = async (_, input) => {
 
 } 
 
-const signup:AuthResolverType = async (_, input) => {
+const signup:AuthResolverType<'register'> = async (_, input) => {
 
     const data = await AddUser(input);
     if (!data) throw BadGateway;
@@ -49,7 +49,7 @@ const relogin:AuthResolverType<'refresh'> = async (_, input ) => {
 
 const deleteprofile:DelUserResolverType = async (_ ,input) => { 
     try {
-        await DeleteUser({userid:input.email});
+        await DeleteUser({userid:input.id});
         return { message: "Account Deleted" };
     } catch (error) {
         throw InternalServerError

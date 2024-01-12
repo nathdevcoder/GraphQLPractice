@@ -7,7 +7,7 @@ export type DBType<T> = Document<unknown, {}, T> & T & {
 
 export function UserResponse(data:DBType<UserSchemaType>, token:Pick<UserType, 'accessToken' | 'refreshToken'>){
     return {
-        name: data.userName,
+        name: data.name,
         email: data.email,  
         avatar: data.avatar, 
         description: data.description,

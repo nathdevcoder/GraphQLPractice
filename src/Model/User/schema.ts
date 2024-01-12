@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 export const userSchema = new Schema<UserSchemaType>({
-  userName: String,
+  name: String,
   description: String, 
   avatar: String,
   dateCreated: { 

@@ -3,6 +3,14 @@ import { AuthInputs, AuthMutations, AuthQueries, AuthTypes } from "./AuthTypeDef
  
   
 const typeDefs = `#graphql
+    #ENUMS
+    enum ROLE {
+        ADMIN
+        MEMBER
+        STAFF
+        USER
+    }
+
     #Types
     ${AuthTypes}
     type Book {
@@ -12,6 +20,10 @@ const typeDefs = `#graphql
 
     #inputTypes
     ${AuthInputs}
+    type Response {
+        message: String!
+        id: String
+    }
 
     #operations
     type Query {

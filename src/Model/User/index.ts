@@ -4,17 +4,17 @@ import User from "./schema";
 import { Types } from "mongoose";
  
 
-export async function AddUser(args: AuthInputType) {
-  const user = await User.findOne({ email: args.email });
+export async function AddUser(input: RegisterInputType) {
+  const user = await User.findOne({ email: input.email });
   if (user) throw EmailAlreadyRegisteredError
-  const hashedPW = await HashPassword(args.password);
+  const hashedPW = await HashPassword(input.password);
 
   const newuser = new User<Omit<UserSchemaType, 'id' | 'refreshToken'>>({
-    userName: 'Hello user',
-    email: args.email,
+    name: input.name,
+    email: input.email,
     password: hashedPW, 
-    avatar: '', 
-    description: '',
+    avatar: input.avatar, 
+    description: input.description,
     dateCreated: new Date(),
     role: 'USER'
   });
@@ -30,8 +30,8 @@ export async function LoginUser(id: Types.ObjectId, refreshToken: string) {
   return await User.findByIdAndUpdate(id, {refreshToken})
 } 
 
-export async function DeleteUser(args: { userid: string }) {
-  await User.findByIdAndDelete(args.userid);
+export async function DeleteUser(input: { userid: string }) {
+  await User.findByIdAndDelete(input.userid);
 }
 
  

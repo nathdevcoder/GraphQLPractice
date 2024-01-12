@@ -2,10 +2,15 @@
 
 export const AuthTypes = `
     type Auth {
-        userName: String
+        id: String!
+        name: String!
         email: String!
-        token: String
+        role: ROLE!
+        dateCreated: Date!
         avatar: String
+        description: String
+        accessToken: String
+        refreshToken: String
     }
 `
 
@@ -13,14 +18,15 @@ export const AuthInputs = `
     input LoginInput {
         email: String! 
         password: String!
+        role: ROLE!
     }
     input SignupInput {
-        userName: String!
+        name: String!
+        description: String
+        avatar: String
         email: String!
         password: String! 
-        avatar: String
-        bio: String
-        filepath: String
+        role: ROLE!
     }
 `
 
@@ -31,4 +37,6 @@ export const AuthQueries = `
 export const AuthMutations = `
     login(input: LoginInput ): Auth!
     signup(input: SignupInput): Auth!
+    relogin(input: {refreshToken: String}): Auth!
+    deleteprofile(input: {id: string}): Response!
 `

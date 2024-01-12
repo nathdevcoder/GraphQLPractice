@@ -3,7 +3,7 @@
     "target": "es2016", 
     "module": "commonjs", 
     "rootDir": "./src", 
-    // "baseUrl": "./", 
+    "baseUrl": "./", 
     // "rootDirs": [], 
     "outDir": "./dist", 
     "noEmitOnError": true, 
@@ -17,5 +17,11 @@
       "@Auth/*": ["./src/Auth/*"],
     }, 
   },
-  "exclude": ["node_modules"]
+  "include": [
+    "src/**/*.ts", 
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+  ],
 }
