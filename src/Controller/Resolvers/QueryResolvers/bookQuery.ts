@@ -1,4 +1,4 @@
-import { authenticated, authorized } from "@Root/Auth/Auth"; 
+import { authenticated, authorized } from "#Auth/Auth"; 
 
 
 

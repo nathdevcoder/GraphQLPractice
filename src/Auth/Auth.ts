@@ -1,5 +1,5 @@
 import { GraphQLFieldResolver, GraphQLResolveInfo } from "graphql";
-import { AuthenticationError, AuthorizationError } from "@ErrorHandlers/ClientErrors";
+import { AuthenticationError, AuthorizationError } from "#ErrorHandlers/ClientErrors";
 
 
 type authFnArgsType<A, R, P = undefined> = (

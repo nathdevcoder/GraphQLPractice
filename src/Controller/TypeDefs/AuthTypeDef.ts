@@ -6,7 +6,7 @@ export const AuthTypes = `
         name: String!
         email: String!
         role: ROLE!
-        dateCreated: Date!
+        dateCreated: String!
         avatar: String
         description: String
         accessToken: String
@@ -28,6 +28,12 @@ export const AuthInputs = `
         password: String! 
         role: ROLE!
     }
+    input ReloginInput { 
+        refreshToken: String 
+    }
+    input DeleteUserInput {
+        id: String
+    }
 `
 
 export const AuthQueries = `
@@ -37,6 +43,6 @@ export const AuthQueries = `
 export const AuthMutations = `
     login(input: LoginInput ): Auth!
     signup(input: SignupInput): Auth!
-    relogin(input: {refreshToken: String}): Auth!
-    deleteprofile(input: {id: string}): Response!
+    relogin(input: ReloginInput): Auth!
+    deleteprofile(input: DeleteUserInput): Response!
 `

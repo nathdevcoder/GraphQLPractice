@@ -1,5 +1,5 @@
-import { HashPassword } from "@Auth/UserPassword";
-import { EmailAlreadyRegisteredError } from "@ErrorHandlers/UIErrors";
+import { HashPassword } from "#Auth/UserPassword";
+import { EmailAlreadyRegisteredError } from "#ErrorHandlers/UIErrors";
 import User from "./schema";
 import { Types } from "mongoose";
  

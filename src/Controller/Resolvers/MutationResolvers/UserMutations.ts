@@ -1,15 +1,15 @@
 
-import { AddUser, DeleteUser, GetUser, LoginUser } from "@Root/Model/User";
+import { AddUser, DeleteUser, GetUser, LoginUser } from "#UserModel/index";
 
-import { CreateToken, VerifyRefreshToken } from "@Auth/UserToken";
-import { authenticated } from "@Auth/Auth";
-import { VerifyPassword } from "@Auth/UserPassword";
+import { CreateToken, VerifyRefreshToken } from "#Auth/UserToken";
+import { authenticated } from "#Auth/Auth";
+import { VerifyPassword } from "#Auth/UserPassword";
 
-import { EmailNotFoundError, WrongPasswordError, } from "@ErrorHandlers/UIErrors";
-import { BadGateway, InternalServerError } from "@Root/Errors/ServerErrors";
+import { EmailNotFoundError, WrongPasswordError, } from "#ErrorHandlers/UIErrors";
+import { BadGateway, InternalServerError } from "#ErrorHandlers/ServerErrors";
 
-import { AuthResolverType, DelUserResolverType } from "@Root/@types/user";
-import { UserResponse } from "@Root/utils/DBHelper";
+import { AuthResolverType, DelUserResolverType } from "#Types/user";
+import { UserResponse } from "#Utils/DBHelper";
 
 
 

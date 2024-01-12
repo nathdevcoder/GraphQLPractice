@@ -6,7 +6,6 @@ import mongoose from 'mongoose';
 import { ContextFunctionType  } from './@types/server';
 import { VerifyAccessToken } from './Auth/UserToken';
 
-
 const port = (process.env.PORT || 4000) as number
 const database = process.env.DATABASE as string
 

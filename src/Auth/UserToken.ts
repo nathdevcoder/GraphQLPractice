@@ -1,5 +1,5 @@
-import { GetUser } from "@Root/Model/User";
-import { UserResponse } from "@Root/utils/DBHelper";
+import { GetUser } from "#UserModel/index";
+import { UserResponse } from "#Utils/DBHelper";
 import jwt from "jsonwebtoken";  
 
 const SECRET = process.env.SECRET || "catpack"
