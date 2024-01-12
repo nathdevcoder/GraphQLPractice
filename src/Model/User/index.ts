@@ -1,6 +1,7 @@
 import { HashPassword } from "@Auth/UserPassword";
 import { EmailAlreadyRegisteredError } from "@ErrorHandlers/UIErrors";
 import User from "./schema";
+import { Types } from "mongoose";
  
 
 export async function AddUser(args: AuthInputType) {
@@ -8,7 +9,7 @@ export async function AddUser(args: AuthInputType) {
   if (user) throw EmailAlreadyRegisteredError
   const hashedPW = await HashPassword(args.password);
 
-  const newuser = new User<Omit<UserSchemaType, 'id'>>({
+  const newuser = new User<Omit<UserSchemaType, 'id' | 'refreshToken'>>({
     userName: 'Hello user',
     email: args.email,
     password: hashedPW, 
@@ -21,8 +22,12 @@ export async function AddUser(args: AuthInputType) {
   return data;
 }
 
-export async function GetUser(email: string) {
-  return await User.findOne({ email: email });
+export async function GetUser(id: string) {
+  return await User.findById(id)
+} 
+
+export async function LoginUser(id: Types.ObjectId, refreshToken: string) {
+  return await User.findByIdAndUpdate(id, {refreshToken})
 } 
 
 export async function DeleteUser(args: { userid: string }) {

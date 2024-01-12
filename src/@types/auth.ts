@@ -18,6 +18,7 @@ type UserSchemaType = {
     id: string  
     role: RoleType
     dateCreated: Date | string
+    refreshToken: string | null
 }
 
 
@@ -27,7 +28,13 @@ type UserType = {
     email: string
     role: RoleType
     dateCreated: Date | string
+    avatar: string
+    description: string
+    accessToken: string
+    refreshToken: string
 }
+
+type UserResponseType = Promise<Omit<UserType, 'accessToken' | 'refreshToken' >> 
 
 type AuthInputType = { 
     email: string

@@ -20,7 +20,11 @@ export const userSchema = new Schema<UserSchemaType>({
   role: {
     type: String,
     required: true
-  }
+  },
+  refreshToken:{
+    type: String,
+    require: false
+  },
 } );
 
 export default mongoose.model<UserSchemaType>("User", userSchema);

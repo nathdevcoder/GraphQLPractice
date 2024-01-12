@@ -4,7 +4,7 @@ import resolvers from './Controller/Resolvers';
 import typeDefs from './Controller/TypeDefs';
 import mongoose from 'mongoose';
 import { ContextFunctionType  } from './@types/server';
-import { VerifyToken } from './Auth/UserToken';
+import { VerifyAccessToken } from './Auth/UserToken';
 
 
 const port = (process.env.PORT || 4000) as number
@@ -18,7 +18,7 @@ const server = new ApolloServer({
 const context:ContextFunctionType = async ({ req } ) => {
   const token =  req.headers.token as string
   if(!token) return {user: null}
-  const user = await VerifyToken(token) 
+  const user = await VerifyAccessToken(token) 
   return { user }
 }
 

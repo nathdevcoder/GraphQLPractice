@@ -1,7 +1,7 @@
 
-import { AddUser, DeleteUser, GetUser } from "@Root/Model/User";
+import { AddUser, DeleteUser, GetUser, LoginUser } from "@Root/Model/User";
 
-import { CreateToken } from "@Auth/UserToken";
+import { CreateToken, VerifyRefreshToken } from "@Auth/UserToken";
 import { authenticated } from "@Auth/Auth";
 import { VerifyPassword } from "@Auth/UserPassword";
 
@@ -9,6 +9,7 @@ import { EmailNotFoundError, WrongPasswordError, } from "@ErrorHandlers/UIErrors
 import { BadGateway, InternalServerError } from "@Root/Errors/ServerErrors";
 
 import { AuthResolverType, DelUserResolverType } from "@Root/@types/user";
+import { UserResponse } from "@Root/utils/DBHelper";
 
 
 
@@ -18,15 +19,11 @@ const login:AuthResolverType = async (_, input) => {
     if (!data) throw EmailNotFoundError;
     const isEqual = await VerifyPassword(input.password, data.password);
     if (!isEqual) throw WrongPasswordError;
-    const token = CreateToken(data);
-    if (!token) throw InternalServerError;
-    return { 
-        role: 'ADMIN',
-        dateCreated: '',
-        email: 'a@a.com',
-        id: 'asd',
-        name: 'nath'
-    };
+    const {accessToken, refreshToken} = CreateToken(data); 
+    if (!accessToken || !refreshToken) throw InternalServerError;
+    const user = await LoginUser(data._id, refreshToken)
+    if(!user) throw BadGateway;  
+    return  UserResponse(user, {accessToken, refreshToken})
 
 } 
 
@@ -34,26 +31,21 @@ const signup:AuthResolverType = async (_, input) => {
 
     const data = await AddUser(input);
     if (!data) throw BadGateway;
-    const token = CreateToken(data);
-    if (!token) throw InternalServerError;
-    return { 
-        role: 'ADMIN',
-        dateCreated: '',
-        email: 'a@a.com',
-        id: 'asd',
-        name: 'nath'
-    };
+    const {accessToken, refreshToken} = CreateToken(data); 
+    if (!accessToken || !refreshToken) throw InternalServerError;
+    const user = await LoginUser(data._id, refreshToken)
+    if(!user) throw BadGateway;
+    return UserResponse(user, {accessToken, refreshToken})
 
 }
 
-//   resignup: async (_:null, input: any, context: any) => {
-//     if (!context.req.isAuth) throw authTimeOutError;
-//     const data = await UpdateUser(input);
-//     if (!data) throw registeringError;
-//     const token = CreateToken(data);
-//     if (!token) throw creatingTokenError;
-//     return {   };
-//   }
+const relogin:AuthResolverType<'refresh'> = async (_, input ) => {
+ 
+    const data = await VerifyRefreshToken(input.refreshToken)
+    if (!data) throw InternalServerError;
+    return data
+
+}
 
 const deleteprofile:DelUserResolverType = async (_ ,input) => { 
     try {
@@ -69,5 +61,6 @@ const deleteprofile:DelUserResolverType = async (_ ,input) => {
 export default {
     login,
     signup,
+    relogin: authenticated(relogin),
     deleteprofile: authenticated(deleteprofile),
 };
