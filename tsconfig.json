@@ -12,9 +12,8 @@
     "strict": true,     
     "skipLibCheck": true, 
     "paths": { 
-      "#UserModel/*": ["Model/User/*"],
-      "#TableModel/*": ["Model/Table/*"],
-      "#Utils/*": ["utils/*"],
+      "#Models/*": ["Model/*"], 
+      "#Utils/*": ["Utils/*"],
       "#Types/*": ["@types/*"],
       "#ErrorHandlers/*": ["Errors/*"],
       "#Auth/*": ["Auth/*"],

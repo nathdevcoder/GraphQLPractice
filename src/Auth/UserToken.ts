@@ -1,4 +1,4 @@
-import { GetUser } from "#UserModel/index";
+import { GetUser } from "#Models/UserModel";
 import { UserResponse } from "#Utils/DBHelper";
 import jwt from "jsonwebtoken";  
 

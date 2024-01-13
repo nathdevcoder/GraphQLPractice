@@ -12,3 +12,5 @@ export type AuthResolverType<T='auth'> =  ResolverType <AuthArgumentType<T>, Use
 export type InvalidateResolverType =  ResolverType <undefined, {message: string}>
 
 export type DelUserResolverType =  ResolverType <{id: string}, {message: string}>
+
+export type GetUserResolverType =  ResolverType <{id: string}, Omit<UserSchemaType, 'refreshToken' | 'password'>>

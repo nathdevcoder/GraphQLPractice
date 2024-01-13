@@ -12,6 +12,15 @@ export const AuthTypes = `
         accessToken: String
         refreshToken: String
     }
+    type User {
+        id: String!
+        name: String!
+        email: String!
+        role: ROLE!
+        dateCreated: String!
+        avatar: String
+        description: String
+    }
 `
 
 export const AuthInputs = `
@@ -37,12 +46,13 @@ export const AuthInputs = `
 `
 
 export const AuthQueries = `
-    getUser: Auth!
+    getUser: User!
 `
 
 export const AuthMutations = `
     login(input: LoginInput ): Auth!
     signup(input: SignupInput): Auth!
     relogin(input: ReloginInput): Auth!
+    logout: Response!
     deleteprofile(input: DeleteUserInput): Response!
 `

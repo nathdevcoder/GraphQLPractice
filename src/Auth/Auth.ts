@@ -18,7 +18,7 @@ export const authenticated = <A, R, P>(
   return next(root, args, context, info)
 }
 
-export const authorized = <P, A, R>(
+export const authorized = <A, R, P>(
   role: RoleType,
   next: GraphQLFieldResolver<P, ContextType, A, R>
 ): authFnArgsType<A, R, P> => (root, args, context, info) => {

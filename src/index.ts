@@ -17,14 +17,14 @@ const server = new ApolloServer({
 const context:ContextFunctionType = async ({ req } ) => {
   const token =  req.headers.authorization as string 
   if(!token) return {user: null}
-  const user = await VerifyAccessToken(token) 
+  const user = await VerifyAccessToken(token)  
   return { user }
 }
 
 (async ()=>{
   try { 
     await mongoose.connect(database || "mongodb://localhost:27017", );
-    console.log('🚀 connected to database');
+    console.log(`connected to ${database} database`);
     const { url } = await startStandaloneServer(server, { context, listen: { port } });
     console.log(`🚀  Server ready at: ${url}`);
   } catch (error:unknown) {

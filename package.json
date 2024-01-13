@@ -13,9 +13,8 @@
     "start": "node dist/index.js"
   },
   "imports": {
-    "#UserModel/*": "./dist/Model/User/*.js",
-    "#TableModel/*": "./dist/Model/Table/*.js",
-    "#Utils/*": "./dist/utils/*.js",
+    "#Models/*": "./dist/Model/*.js",
+    "#Utils/*": "./dist/Utils/*.js",
     "#ErrorHandlers/*": "./dist/Errors/*.js",
     "#Auth/*": "./dist/Auth/*.js"
   },

@@ -1,5 +1,5 @@
 
-import { AddUser, DeleteUser, GetUserByEmail, LoginUser } from "#UserModel/index";
+import { AddUser, DeleteUser, GetUserByEmail, LoginUser } from "#Models/UserModel";
 
 import { CreateToken, VerifyRefreshToken } from "#Auth/UserToken";
 import { authenticated } from "#Auth/Auth";

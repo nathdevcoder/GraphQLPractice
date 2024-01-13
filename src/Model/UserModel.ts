@@ -1,8 +1,36 @@
+import mongoose, { Types } from "mongoose"; 
 import { HashPassword } from "#Auth/UserPassword";
-import { EmailAlreadyRegisteredError } from "#ErrorHandlers/UIErrors";
-import User from "./schema";
-import { Types } from "mongoose";
- 
+import { EmailAlreadyRegisteredError } from "#ErrorHandlers/UIErrors"; 
+
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema<UserSchemaType>({
+  name: String,
+  description: String, 
+  avatar: String,
+  dateCreated: { 
+    type: Date, 
+    default: Date.now 
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  role: {
+    type: String,
+    required: true
+  },
+  refreshToken:{
+    type: String,
+    require: false
+  },
+} );
+
+const User = mongoose.model<UserSchemaType>("User", userSchema);
 
 export async function AddUser(input: RegisterInputType) {
   const user = await User.findOne({ email: input.email });
