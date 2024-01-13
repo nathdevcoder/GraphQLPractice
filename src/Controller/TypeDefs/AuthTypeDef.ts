@@ -4,10 +4,10 @@ export const AuthTypes = `
     type Auth {
         id: String!
         name: String!
-        email: String!
+        email: Email!
         role: ROLE!
-        dateCreated: String!
-        avatar: String
+        dateCreated: Date!
+        avatar: URL
         description: String
         accessToken: String
         refreshToken: String
@@ -15,17 +15,17 @@ export const AuthTypes = `
     type User {
         id: String!
         name: String!
-        email: String!
+        email: Email!
         role: ROLE!
-        dateCreated: String!
-        avatar: String
+        dateCreated: Date!
+        avatar: URL
         description: String
     }
 `
 
 export const AuthInputs = `
     input LoginInput {
-        email: String! 
+        email: Email! 
         password: String!
         role: ROLE!
     }
@@ -33,7 +33,7 @@ export const AuthInputs = `
         name: String!
         description: String
         avatar: String
-        email: String!
+        email: Email!
         password: String! 
         role: ROLE!
     }

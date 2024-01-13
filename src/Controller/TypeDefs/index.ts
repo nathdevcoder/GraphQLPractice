@@ -3,6 +3,11 @@ import { AuthInputs, AuthMutations, AuthQueries, AuthTypes } from "./AuthTypeDef
  
   
 const typeDefs = `#graphql
+    #customScalars
+    scalar Date
+    scalar URL
+    scalar Email
+
     #ENUMS
     enum ROLE {
         ADMIN
