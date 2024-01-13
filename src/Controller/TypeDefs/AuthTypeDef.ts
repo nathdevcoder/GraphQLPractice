@@ -43,6 +43,9 @@ export const AuthInputs = `
     input DeleteUserInput {
         id: String
     }
+    input ReassignUserInput {
+        role: ROLE
+    }
 `
 
 export const AuthQueries = `
@@ -54,5 +57,6 @@ export const AuthMutations = `
     signup(input: SignupInput): Auth!
     relogin(input: ReloginInput): Auth!
     logout: Response!
+    reassign(input: ReassignUserInput): Auth!
     deleteprofile(input: DeleteUserInput): Response!
 `

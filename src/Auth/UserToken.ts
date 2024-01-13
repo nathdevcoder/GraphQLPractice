@@ -6,7 +6,7 @@ const SECRET = process.env.SECRET || "catpack"
 const REFRESH = process.env.REFRESH || "choppper"
 
 export function CreateToken({id, role}: TokenType) { 
-  const accessToken =  jwt.sign({id, role}, SECRET, { expiresIn: "20m" }); 
+  const accessToken =  jwt.sign({id, role}, SECRET, { expiresIn: "15m" }); 
   const refreshToken = jwt.sign({id, role}, REFRESH );
   return {accessToken, refreshToken}
 }
@@ -14,7 +14,7 @@ export function CreateToken({id, role}: TokenType) {
 export async function VerifyRefreshToken(refreshToken: string) {
   const userToken = jwt.verify(refreshToken, REFRESH) as TokenType
   if(!userToken) return null 
-  const accessToken = jwt.sign(userToken, SECRET, { expiresIn: "20m" }); 
+  const accessToken = jwt.sign(userToken, SECRET, { expiresIn: "15m" }); 
   if(!accessToken) return null 
   const user = await GetUser(userToken.id)
   if(!user || !user.refreshToken) return  null

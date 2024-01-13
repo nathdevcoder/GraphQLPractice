@@ -20,6 +20,7 @@ type UserSchemaType = {
     password: string 
     id: string  
     role: RoleType
+    roles: RoleType[]
     dateCreated: Date | string
     refreshToken: string | null
 }
@@ -30,6 +31,7 @@ type UserType = {
     name: string
     email: string
     role: RoleType
+    roles: RoleType[]
     dateCreated: Date | string
     avatar: string
     description: string

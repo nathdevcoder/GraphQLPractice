@@ -17,6 +17,7 @@ const getUser:GetUserResolverType = async (_, __, {user}) => {
         id: data._id.toString(),
         description: data.description,
         role: data.role,
+        roles: data.roles
     }
 }
 

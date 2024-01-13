@@ -15,6 +15,7 @@ export function UserResponse(data:DBType<UserSchemaType>, token:Pick<UserType, '
         role: data.role,
         id: data._id.toString(),
         accessToken: token.accessToken,
-        refreshToken: token.refreshToken
+        refreshToken: token.refreshToken,
+        roles: data.roles
       }
 }

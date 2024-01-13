@@ -9,7 +9,9 @@ type AuthArgumentType<T> =
 
 export type AuthResolverType<T='auth'> =  ResolverType <AuthArgumentType<T>, UserType>
 
-export type InvalidateResolverType =  ResolverType <undefined, {message: string}>
+export type InvalidateResolverType =  ResolverType <undefined, {message: string, id?: string}>
+
+export type RevalidateResolverType =  ResolverType <{role: RoleType}, UserType>
 
 export type DelUserResolverType =  ResolverType <{id: string}, {message: string}>
 

@@ -24,6 +24,13 @@ const userSchema = new Schema<UserSchemaType>({
     type: String,
     required: true
   },
+  roles: {
+    type: [{
+      type: String,
+      enum: ['USER', 'ADMIN', 'MEMBER', 'STAFF'],
+    }],
+    default: ['USER'],
+  },
   refreshToken:{
     type: String,
     require: false
@@ -44,6 +51,7 @@ export async function AddUser(input: RegisterInputType) {
     avatar: input.avatar, 
     description: input.description,
     dateCreated: new Date(),
+    roles: ['USER'],
     role: 'USER'
   });
   const data = await newuser.save();
@@ -62,8 +70,20 @@ export async function LoginUser(id: Types.ObjectId, refreshToken: string) {
   return await User.findByIdAndUpdate(id, {refreshToken})
 } 
 
+export async function LogoutUser(id: string) {
+  return await User.findByIdAndUpdate(id, {refreshToken: ''})
+} 
+
 export async function DeleteUser(input: { userid: string }) {
-  await User.findByIdAndDelete(input.userid);
+  return await User.findByIdAndDelete(input.userid);
 }
 
+export async function AssignRole( role: RoleType , id: string, refreshToken: string) { 
+  const _id = new mongoose.Types.ObjectId(id)
+  return await User.findOneAndUpdate(
+    { _id, roles: { $in: role } },
+    { role, refreshToken },
+    { new: true } 
+  )
+}
  
