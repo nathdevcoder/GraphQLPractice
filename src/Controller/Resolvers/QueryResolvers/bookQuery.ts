@@ -1,8 +1,6 @@
-import { authenticated, authorized } from "#Auth/Auth"; 
+  
 
-
-
-function books() {
+export const books = () => {
   return [
     {
       title: 'The Awakening',
@@ -14,7 +12,4 @@ function books() {
     },
   ]
 }
-
-export default {
-  books: authenticated(authorized('USER', books))
-};
+ 

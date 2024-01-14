@@ -1,8 +1,7 @@
 
 import { AddUser, AssignRole, DeleteUser, GetUserByEmail, LoginUser, LogoutUser } from "#Models/UserModel";
 
-import { CreateToken, VerifyRefreshToken } from "#Auth/UserToken";
-import { authenticated } from "#Auth/Auth";
+import { CreateToken, VerifyRefreshToken } from "#Auth/UserToken"; 
 import { VerifyPassword } from "#Auth/UserPassword";
 
 import { EmailNotFoundError, WrongPasswordError, } from "#ErrorHandlers/UIErrors";
@@ -13,7 +12,7 @@ import { UserResponse } from "#Utils/DBHelper";
 
 
 
-const login:AuthResolverType = async (_, {input}) => {
+export const login:AuthResolverType = async (_, {input}) => {
 
     const data = await GetUserByEmail(input.email);
     if (!data) throw EmailNotFoundError;
@@ -27,7 +26,7 @@ const login:AuthResolverType = async (_, {input}) => {
 
 } 
 
-const signup:AuthResolverType<'register'> = async (_, {input}) => {
+export const signup:AuthResolverType<'register'> = async (_, {input}) => {
 
     const data = await AddUser(input);
     if (!data) throw BadGateway;
@@ -39,7 +38,7 @@ const signup:AuthResolverType<'register'> = async (_, {input}) => {
 
 }
 
-const relogin:AuthResolverType<'refresh'> = async (_, {input} ) => {
+export const relogin:AuthResolverType<'refresh'> = async (_, {input} ) => {
  
     const data = await VerifyRefreshToken(input.refreshToken)
     if (!data) throw InternalServerError;
@@ -47,7 +46,7 @@ const relogin:AuthResolverType<'refresh'> = async (_, {input} ) => {
 
 }
 
-const logout: InvalidateResolverType = async (_,__, {user}) => {
+export const logout: InvalidateResolverType = async (_,__, {user}) => {
 
     if(!user) return {message: 'not loged in'}
     const data = await LogoutUser(user.id)
@@ -56,7 +55,7 @@ const logout: InvalidateResolverType = async (_,__, {user}) => {
 
 }
 
-const reassign: RevalidateResolverType = async (_,{input},{user}) => {
+export const reassign: RevalidateResolverType = async (_,{input},{user}) => {
 
     if(!user) throw InternalServerError
     const {accessToken, refreshToken} = CreateToken({id: user.id, role: input.role}); 
@@ -70,22 +69,11 @@ const reassign: RevalidateResolverType = async (_,{input},{user}) => {
 
 }
 
-const deleteprofile:DelUserResolverType = async (_ ,{input}) => { 
+export const deleteprofile:DelUserResolverType = async (_ ,{input}) => { 
     try {
         await DeleteUser({userid:input.id});
         return { message: "Account Deleted" };
     } catch (error) {
         throw InternalServerError
     } 
-}
-
-
-
-export default {
-    login,
-    signup,
-    relogin: authenticated(relogin),
-    logout: authenticated(logout),
-    reassign: authenticated(reassign),
-    deleteprofile: authenticated(deleteprofile),
-};
+} 

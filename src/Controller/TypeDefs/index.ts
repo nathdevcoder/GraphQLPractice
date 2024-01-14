@@ -5,15 +5,20 @@ import { AuthInputs, AuthMutations, AuthQueries, AuthTypes } from "./AuthTypeDef
 const typeDefs = `#graphql
     #customScalars
     scalar Date
-    scalar URL
+    scalar Url
     scalar Email
 
     #ENUMS
-    enum ROLE {
+    enum Role {
         ADMIN
         MEMBER
         STAFF
         USER
+    }
+    enum Size {
+        SMALL
+        MEDIUM
+        LARGE
     }
 
     #Types

@@ -5,9 +5,10 @@ export const AuthTypes = `
         id: String!
         name: String!
         email: Email!
-        role: ROLE!
+        role: Role!
+        roles: [Role]!
         dateCreated: Date!
-        avatar: URL
+        avatar(size: Size): Url
         description: String
         accessToken: String
         refreshToken: String
@@ -16,9 +17,10 @@ export const AuthTypes = `
         id: String!
         name: String!
         email: Email!
-        role: ROLE!
+        role: Role!
+        roles: [Role]!
         dateCreated: Date!
-        avatar: URL
+        avatar(size: Size): Url
         description: String
     }
 `
@@ -27,7 +29,7 @@ export const AuthInputs = `
     input LoginInput {
         email: Email! 
         password: String!
-        role: ROLE!
+        role: Role!
     }
     input SignupInput {
         name: String!
@@ -35,7 +37,7 @@ export const AuthInputs = `
         avatar: String
         email: Email!
         password: String! 
-        role: ROLE!
+        role: Role!
     }
     input ReloginInput { 
         refreshToken: String 
@@ -44,7 +46,7 @@ export const AuthInputs = `
         id: String
     }
     input ReassignUserInput {
-        role: ROLE
+        role: Role
     }
 `
 

@@ -1,11 +1,11 @@
-import { authenticated, authorized } from "#Auth/Auth";
+
 import { BadGateway } from "#ErrorHandlers/ServerErrors";
 import { EmailNotFoundError } from "#ErrorHandlers/UIErrors";
 import { GetUser } from "#Models/UserModel";
 import { GetUserResolverType } from "#Types/user";
 
 
-const getUser:GetUserResolverType = async (_, __, {user}) => {
+export const getUser:GetUserResolverType = async (_, __, {user}) => {
     if(!user) throw EmailNotFoundError
     const data = await GetUser(user.id)
     if(!data) throw BadGateway
@@ -19,9 +19,4 @@ const getUser:GetUserResolverType = async (_, __, {user}) => {
         role: data.role,
         roles: data.roles
     }
-}
-
-
-export default {
-    getUser: authenticated(authorized('USER', getUser))
-  };
+} 
