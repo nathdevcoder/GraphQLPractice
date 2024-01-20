@@ -69,3 +69,20 @@ export async function GetTableData(state: TableStateType) {
     if(!data) return []
     return data
   } 
+
+  export async function AddTableData(input: Omit<TableDataType, 'id'>) {  
+    const newTableData = new Table<TableSchemaType >({
+        difficulty_level: input.difficultyLevel,
+        calories: input.calories,
+        cook_time: input.cookTime,
+        cuisine: input.cuisine,
+        ingredients: input.ingredients,
+        instructions: input.ingredients,
+        is_vegetarian: input.isVegetarian,
+        prep_time: input.prepTime,
+        total_time: input.totalTime,
+        recipe_name: input.recipeName
+      });
+      const data = await newTableData.save();
+      return data;
+  } 

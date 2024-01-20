@@ -2,11 +2,10 @@ import { GraphQLFieldResolver } from "graphql";
 
 type ResolverType<A, R, P = unknown> = GraphQLFieldResolver<P, ContextType, A, Promise<R>>
 
-type TableArgumentType<T> =
-  T extends 'get' ? TableStateType :
-  T extends 'add' ? Omit<TableDataType, 'id'> :
-  undefined 
 
-export type TableResolverType<T> =  ResolverType<{input: TableArgumentType<T>}, TableResponseType>
+export type TableResolverType<T> = 
+T extends 'get' ? ResolverType<{ input: TableStateType }, TableResponseType> : 
+T extends 'add' ? ResolverType<{ input: Omit<TableDataType, 'id'> }, TableDataType> : 
+undefined
 
 export default ResolverType

@@ -35,3 +35,19 @@ export function TableResponse(datas:DBType<TableSchemaType>[] ): TableDataType[]
     recipeName: data.recipe_name
   }))
 }
+
+export function SingleTableResponse(data:DBType<TableSchemaType> ): TableDataType{
+  return  {
+    id: data._id.toString(),
+    difficultyLevel: data.difficulty_level,
+    calories: data.calories,
+    cookTime: data.cook_time,
+    cuisine: data.cuisine,
+    ingredients: data.ingredients,
+    instructions: data.ingredients,
+    isVegetarian: data.is_vegetarian,
+    prepTime: data.prep_time,
+    totalTime: data.total_time,
+    recipeName: data.recipe_name
+  }
+}
