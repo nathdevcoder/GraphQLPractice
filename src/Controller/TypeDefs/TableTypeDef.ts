@@ -22,6 +22,27 @@ export const TableTypes = `
         densable: Boolean
         count: Int 
     }
+    type TableFilter {
+        field: String
+        operations: Operators
+        query: String
+    }
+    type TableSort {
+        field: String
+        order: Order
+    }
+    type TableState {
+        page: Int!
+        rowsPerPage: Int!
+        sort: TableSort
+        filter: [TableFilter]
+    }
+
+    type TableResponse {
+        data: [Table]!
+        options: TableOptions
+        state: TableState
+    }
 `
 
 export const TableInputs = `
@@ -55,7 +76,7 @@ export const TableInputs = `
 `
 
 export const TableQueries = `
-    gettabledata(input: TableStateInput): [Table]!
+    gettabledata(input: TableStateInput): TableResponse!
 `
 
 export const TableMutations = `
