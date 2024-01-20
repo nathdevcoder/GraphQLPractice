@@ -20,6 +20,25 @@ const typeDefs = `#graphql
         MEDIUM
         LARGE
     }
+    enum Cuisine {
+        Italian
+        Indian
+        Chinese
+        Mexican
+    }
+    enum Level {
+        Easy
+        Medium
+        Hard
+    }
+    enum Order {
+        asc
+        desc
+    }
+    enum Operators {
+        contains
+        equals
+    }
 
     #Types
     ${AuthTypes}

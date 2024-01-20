@@ -51,8 +51,7 @@ const tableSchema = new Schema<TableSchemaType>({
 const Table = mongoose.model<TableSchemaType>("Table", tableSchema);
  
 
-export async function GetTableData(input: TableQueryInputType) {
-    const {state, options} = input
+export async function GetTableData(state: TableStateType) { 
     const {page, rowsPerPage, filter, sort} = state
     let query: any = {}
     let sortQuery: undefined | {[k:string]: Order} = undefined 
