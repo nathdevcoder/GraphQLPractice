@@ -14,7 +14,7 @@
   },
   "imports": {
     "#Models/*": "./dist/Model/*.js",
-    "#Utils/*": "./dist/Utils/*.js",
+    "#Utils/*": "./dist/utils/*.js",
     "#ErrorHandlers/*": "./dist/Errors/*.js",
     "#Auth/*": "./dist/Auth/*.js"
   },

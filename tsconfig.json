@@ -13,7 +13,7 @@
     "skipLibCheck": true, 
     "paths": { 
       "#Models/*": ["Model/*"], 
-      "#Utils/*": ["Utils/*"],
+      "#Utils/*": ["utils/*"],
       "#Types/*": ["@types/*"],
       "#ErrorHandlers/*": ["Errors/*"],
       "#Auth/*": ["Auth/*"],
