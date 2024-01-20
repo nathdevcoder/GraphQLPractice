@@ -1,6 +1,6 @@
 const chai = require('chai');
 const chaiGraphQL = require('chai-graphql');
-const createTestServer = require('./helper')
+const {createTestServer} = require('./helper')
 
 chai.use(chaiGraphQL);
  
@@ -37,7 +37,7 @@ describe('test server test', () => {
             variables,
         })
         assert.notGraphQLError(response.body.singleResult)
-        assert.graphQL(response.body.singleResult, { hello: 'Hello World' })
+        assert.graphQL(response.body.singleResult, { hello: 'Hello world!' })
          
       });
 })

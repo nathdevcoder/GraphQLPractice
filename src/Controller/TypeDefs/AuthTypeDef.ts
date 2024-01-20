@@ -34,7 +34,7 @@ export const AuthInputs = `
     input SignupInput {
         name: String!
         description: String
-        avatar: String
+        avatar: Url
         email: Email!
         password: String! 
         role: Role!

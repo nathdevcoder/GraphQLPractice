@@ -3,7 +3,7 @@ import { isURL } from 'validator'
 
 
 const URLScalar = new GraphQLScalarType({
-    name: 'URL',
+    name: 'Url',
     description: 'A custom scalar representing a URL',
 
     serialize(value) {
