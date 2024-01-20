@@ -1,4 +1,5 @@
 import { AuthInputs, AuthMutations, AuthQueries, AuthTypes } from "./AuthTypeDef";
+import { TableInputs, TableMutations, TableQueries, TableTypes } from "./TableTypeDef";
 
  
   
@@ -42,6 +43,7 @@ const typeDefs = `#graphql
 
     #Types
     ${AuthTypes}
+    ${TableTypes}
     type Book {
         title: String
         author: String
@@ -49,6 +51,7 @@ const typeDefs = `#graphql
 
     #inputTypes
     ${AuthInputs}
+    ${TableInputs}
     type Response {
         message: String!
         id: String
@@ -57,10 +60,12 @@ const typeDefs = `#graphql
     #operations
     type Query {
         ${AuthQueries}
+        ${TableQueries}
         books: [Book]
     }
     type Mutation {
         ${AuthMutations}
+        ${TableMutations}
     }
 `
 export default typeDefs;

@@ -12,6 +12,7 @@ export const TableTypes = `
         cuisine: Cuisine
         difficultyLevel: Level
         isVegetarian: Boolean
+        id: String
     } 
 
     type TableOptions {
@@ -31,12 +32,12 @@ export const TableInputs = `
     input FilterInput {
         field: String
         operations: Operators
-        query: string
+        query: String
     }
     input TableStateInput {
-        page: Int!;
-        rowsPerPage: Int!;
-        sort: SortInput;
+        page: Int!
+        rowsPerPage: Int!
+        sort: SortInput
         filter: [FilterInput]
     }
     input TableInput {

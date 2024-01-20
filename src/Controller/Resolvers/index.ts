@@ -1,5 +1,6 @@
 import { getUser } from "./QueryResolvers/UserQuery";
 import { books } from "./QueryResolvers/bookQuery"; 
+import {gettabledata} from "./QueryResolvers/TableQuery"
 import { deleteprofile, login, logout, reassign, relogin, signup } from './MutationResolvers/UserMutations';
 import dateScalar from "./CustomScalars/DateScalar";
 import EmailScalar from "./CustomScalars/EmailScalar";
@@ -14,7 +15,8 @@ const resolvers = {
 
     Query: { 
         getUser: authenticated(authorized('USER', getUser)),
-        books: authenticated(authorized('USER', books))
+        books: authenticated(authorized('USER', books)),
+        gettabledata: gettabledata
     },
 
     Mutation: {
