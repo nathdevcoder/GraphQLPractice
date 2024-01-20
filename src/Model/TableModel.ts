@@ -1,3 +1,4 @@
+import { TableResponse } from "#Utils/DBHelper";
 import mongoose, { Types } from "mongoose";  
 
 const Schema = mongoose.Schema;
@@ -50,7 +51,7 @@ const tableSchema = new Schema<TableSchemaType>({
 const Table = mongoose.model<TableSchemaType>("Table", tableSchema);
  
 
-export async function GetTableData(input: TableQueryInputType): Promise<TableResponseType<Types.ObjectId>> {
+export async function GetTableData(input: TableQueryInputType) {
     const {state, options} = input
     const {page, rowsPerPage, filter, sort} = state
     let query: any = {}
@@ -66,5 +67,6 @@ export async function GetTableData(input: TableQueryInputType): Promise<TableRes
         sortQuery[sort.field] = sort.order
     }
     const data = await Table.find(query).sort(sortQuery).skip(page*rowsPerPage).limit(rowsPerPage).exec()
-    return { data, state, options }
+    if(!data) return []
+    return data
   } 

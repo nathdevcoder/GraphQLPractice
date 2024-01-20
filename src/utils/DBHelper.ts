@@ -19,3 +19,19 @@ export function UserResponse(data:DBType<UserSchemaType>, token:Pick<UserType, '
         roles: data.roles
       }
 }
+
+export function TableResponse(datas:DBType<TableSchemaType>[] ): TableDataType[]{
+  return datas.map(data=>({
+    id: data._id.toString(),
+    difficultyLevel: data.difficulty_level,
+    calories: data.calories,
+    cookTime: data.cook_time,
+    cuisine: data.cuisine,
+    ingredients: data.ingredients,
+    instructions: data.ingredients,
+    isVegetarian: data.is_vegetarian,
+    prepTime: data.prep_time,
+    totalTime: data.total_time,
+    recipeName: data.recipe_name
+  }))
+}

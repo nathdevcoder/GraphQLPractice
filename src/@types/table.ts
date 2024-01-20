@@ -11,7 +11,9 @@ type TableSchemaType = {
     is_vegetarian: boolean
 }
 
-type TableDataType<T> = TableSchemaType&{ _id: T }
+type SnakeToCamelCase<S extends string> = S extends `${infer T}_${infer U}` ? `${T}${Capitalize<SnakeToCamelCase<U>>}` : S
+
+type TableDataType =  {[K in keyof (TableSchemaType&{id:string}) as SnakeToCamelCase<K>]: (TableSchemaType&{id:string})[K]}
 
 type Order = 'asc' | 'desc';
 type Operators = 'contains' | 'equals'; 
@@ -37,10 +39,10 @@ type TableOptionType = {
     count: number 
 }
 
-type TableResponseType<T> = {
-    data: TableDataType<T>[]
+type TableResponseType = {
+    data: TableDataType[]
     state: TableStateType
     options: TableOptionType
 }
 
-type TableQueryInputType = Omit<TableResponseType<null>, 'data'>
+type TableQueryInputType = Omit<TableResponseType, 'data'>
