@@ -5,9 +5,10 @@ import typeDefs from './Controller/TypeDefs';
 import mongoose from 'mongoose';
 import { ContextFunctionType  } from './@types/server';
 import { VerifyAccessToken } from './Auth/UserToken';
+import 'dotenv/config'
 
 const port = (process.env.PORT || 4000) as number
-const database = process.env.DATABASE as string
+const database = process.env.DATABASE || "mongodb://localhost:27017"  
 
 const server = new ApolloServer({
     typeDefs,
@@ -23,7 +24,8 @@ const context:ContextFunctionType = async ({ req } ) => {
 
 (async ()=>{
   try { 
-    await mongoose.connect(database || "mongodb://localhost:27017", );
+    await mongoose.connect(database );
+    console.log(process.env.DATABASE)
     console.log(`connected to ${database} database`);
     const { url } = await startStandaloneServer(server, { context, listen: { port } });
     console.log(`🚀  Server ready at: ${url}`);

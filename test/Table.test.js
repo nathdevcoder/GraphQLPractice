@@ -54,7 +54,6 @@ describe("Table Testing", () => {
       query,
       variables,
     });
-    console.log(response.body.singleResult.data);
     assert.notGraphQLError(response.body.singleResult);
   });  
 });
