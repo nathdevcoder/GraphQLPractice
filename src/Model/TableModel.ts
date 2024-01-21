@@ -1,3 +1,4 @@
+import { camelToSnake } from "#Utils/Formater";
 import mongoose  from "mongoose";  
 
 const Schema = mongoose.Schema;
@@ -56,13 +57,13 @@ export async function GetTableData(state: TableStateType) {
     let sortQuery: undefined | {[k:string]: Order} = undefined 
     if(filter) {
         filter.forEach(ft=>{ 
-            if(ft.operations === 'equals') query[ft.field] =  ft.query
-            if(ft.operations === 'contains') query[ft.field] =  {$regex: ft.query}
+            if(ft.operations === 'equals') query[camelToSnake(ft.field)] =  ft.query
+            if(ft.operations === 'contains') query[camelToSnake(ft.field)] =  {$regex: ft.query}
         })
     }
     if(sort) {
         sortQuery = {}
-        sortQuery[sort.field] = sort.order
+        sortQuery[camelToSnake(sort.field)] = sort.order
     }
     const data = await Table.find(query).sort(sortQuery).skip(page*rowsPerPage).limit(rowsPerPage).exec()
     if(!data) return []

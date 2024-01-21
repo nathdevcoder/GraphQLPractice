@@ -24,8 +24,7 @@ const context:ContextFunctionType = async ({ req } ) => {
 
 (async ()=>{
   try { 
-    await mongoose.connect(database );
-    console.log(process.env.DATABASE)
+    await mongoose.connect(database )
     console.log(`connected to ${database} database`);
     const { url } = await startStandaloneServer(server, { context, listen: { port } });
     console.log(`🚀  Server ready at: ${url}`);
