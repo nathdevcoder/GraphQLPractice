@@ -61,7 +61,19 @@ const folderSchema = new Schema<FolderSchemaType>({
     rootFolder: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Folder' }
 })
 
+folderSchema.post('findOne', function(doc, next) {
+    console.log(doc._id);
+})
+folderSchema.post('findOneAndDelete', function(doc, next) {
+    console.log(doc._id);
+})
+
 const Files = mongoose.model<FileSchemaType>("File", fileSchema);
 const Folders = mongoose.model<FolderSchemaType>("Folder", folderSchema);
 
 
+ 
+
+export async function getDirectory(id: string) {
+    const data = await Folders.findOne({_id: id})
+}
