@@ -8,6 +8,7 @@ import EmailScalar from "./CustomScalars/EmailScalar";
 import URLScalar from "./CustomScalars/UrlScalar";
 import { authenticated, authorized } from "#Auth/Auth";
 import { image } from "./TypeResolvers/userTypes";
+import { DirResolve } from "./TypeResolvers/DirTypes";
 
 const resolvers = {
     Date: dateScalar,
@@ -36,6 +37,10 @@ const resolvers = {
 
     Auth: {
         avatar: image
+    },
+
+    Dir: {
+        __resolveType: DirResolve
     }
 };
 export default resolvers;

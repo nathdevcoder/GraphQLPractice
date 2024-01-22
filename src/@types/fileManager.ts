@@ -8,7 +8,7 @@ type DirType = {
     createdAt: Date | null
     updatedAt: Date | null
     deletedAt: Date | null
-    rootFolder: string
+    rootFolder: FolderType
     name: string 
     accessibility: accessibilityType
     index: number
@@ -26,8 +26,7 @@ type FileType = DirType & {
 }  
 type FolderType = DirType & { 
     files: FileType[]
-    folders: FolderType[]
-    rootFolder: FolderType
+    folders: FolderType[] 
     openedFolder: FolderType 
 }
 type Attachment = { 
