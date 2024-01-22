@@ -1,4 +1,5 @@
 import { AuthInputs, AuthMutations, AuthQueries, AuthTypes } from "./AuthTypeDef";
+import { DirEnums, DirInputs, DirMutations, DirQueries, DirTypes } from "./DirectoryTypeDef";
 import { TableEnums, TableInputs, TableMutations, TableQueries, TableTypes } from "./TableTypeDef";
 
  
@@ -22,10 +23,12 @@ const typeDefs = `#graphql
         LARGE
     }
     ${TableEnums}
+    ${DirEnums}
 
     #Types
     ${AuthTypes}
     ${TableTypes}
+    ${DirTypes}
     type Book {
         title: String
         author: String
@@ -34,6 +37,7 @@ const typeDefs = `#graphql
     #inputTypes
     ${AuthInputs}
     ${TableInputs}
+    ${DirInputs}
     type Response {
         message: String!
         id: String
@@ -43,11 +47,13 @@ const typeDefs = `#graphql
     type Query {
         ${AuthQueries}
         ${TableQueries}
+        ${DirQueries}
         books: [Book]
     }
     type Mutation {
         ${AuthMutations}
         ${TableMutations}
+        ${DirMutations}
     }
 `
 export default typeDefs;

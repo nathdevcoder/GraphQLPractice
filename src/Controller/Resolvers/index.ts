@@ -9,6 +9,8 @@ import URLScalar from "./CustomScalars/UrlScalar";
 import { authenticated, authorized } from "#Auth/Auth";
 import { image } from "./TypeResolvers/userTypes";
 import { DirResolve } from "./TypeResolvers/DirTypes";
+import { addFile, addFolder } from "./MutationResolvers/MyFilesMutations";
+import { GetMyFiles } from "./QueryResolvers/MyFilesQuery";
 
 const resolvers = {
     Date: dateScalar,
@@ -18,7 +20,8 @@ const resolvers = {
     Query: { 
         getUser: authenticated(authorized('USER', getUser)),
         books: authenticated(authorized('USER', books)),
-        gettabledata: gettabledata
+        gettabledata: gettabledata,
+        getmyfiles: GetMyFiles
     },
 
     Mutation: {
@@ -28,7 +31,9 @@ const resolvers = {
         logout: authenticated(logout),
         reassign: authenticated(reassign),
         deleteprofile: authenticated(deleteprofile),
-        addtabledata: addtabledata
+        addtabledata: addtabledata,
+        addfolder: addFolder,
+        addfile: addFile
     },
 
     User: {
