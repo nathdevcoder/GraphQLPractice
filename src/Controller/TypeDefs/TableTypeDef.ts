@@ -1,5 +1,27 @@
 
 
+export const TableEnums = `
+    enum Cuisine {
+        Italian
+        Indian
+        Chinese
+        Mexican
+    }
+    enum Level {
+        Easy
+        Medium
+        Hard
+    }
+    enum Order {
+        asc
+        desc
+    }
+    enum Operators {
+        contains
+        equals
+    }
+`
+
 export const TableTypes = `
     type Table {
         recipeName: String

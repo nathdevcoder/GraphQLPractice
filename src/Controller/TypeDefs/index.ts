@@ -1,5 +1,5 @@
 import { AuthInputs, AuthMutations, AuthQueries, AuthTypes } from "./AuthTypeDef";
-import { TableInputs, TableMutations, TableQueries, TableTypes } from "./TableTypeDef";
+import { TableEnums, TableInputs, TableMutations, TableQueries, TableTypes } from "./TableTypeDef";
 
  
   
@@ -21,25 +21,7 @@ const typeDefs = `#graphql
         MEDIUM
         LARGE
     }
-    enum Cuisine {
-        Italian
-        Indian
-        Chinese
-        Mexican
-    }
-    enum Level {
-        Easy
-        Medium
-        Hard
-    }
-    enum Order {
-        asc
-        desc
-    }
-    enum Operators {
-        contains
-        equals
-    }
+    ${TableEnums}
 
     #Types
     ${AuthTypes}
