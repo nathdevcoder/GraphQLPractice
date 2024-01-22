@@ -14,26 +14,26 @@ export const DirTypes = `
     interface Dir {
         id: String!
         uploadedBy: String!
-        deletedBy: string
+        deletedBy: String
         createdAt: Date
         updatedAt: Date
         deletedAt: Date
         rootFolder: String
         name: String 
         accessibility: accessibitity!
-        index: Int!
+        index: Float!
     }
     type Folder implements Dir {
         id: String!
         uploadedBy: String!
-        deletedBy: string
+        deletedBy: String
         createdAt: Date
         updatedAt: Date
         deletedAt: Date
         rootFolder: String
         name: String 
         accessibility: accessibitity!
-        index: Int!
+        index: Float!
         files: [File]
         folders: [Folder] 
         openedFolder: Folder
@@ -41,16 +41,16 @@ export const DirTypes = `
     type File implements Dir {
         id: String!
         uploadedBy: String!
-        deletedBy: string
+        deletedBy: String
         createdAt: Date
         updatedAt: Date
         deletedAt: Date
         rootFolder: String
         name: String 
         accessibility: accessibitity!
-        index: Int!
+        index: Float!
         fileName: String!
-        fileSize: Int
+        fileSize: Float
         fileType: String!
         filePath: String!
         disk: String
@@ -63,12 +63,12 @@ export const DirTypes = `
 export const DirInputs = `
     input FolderInput {
         name: String!
-        index: Int
+        index: Float
         rootFolder: String!
     }
     input FileInput {
-        file: Upload!
-        index: Int 
+        file: String!
+        index: Float 
     } 
 `
 
