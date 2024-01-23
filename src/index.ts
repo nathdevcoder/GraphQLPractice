@@ -1,19 +1,15 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
-import resolvers from './Controller/Resolvers';
-import typeDefs from './Controller/TypeDefs';
 import mongoose from 'mongoose';
 import { ContextFunctionType  } from './@types/server';
 import { VerifyAccessToken } from './Auth/UserToken';
 import 'dotenv/config'
+import schema from './Controller/Directives';
 
 const port = (process.env.PORT || 4000) as number
 const database = process.env.DATABASE || "mongodb://localhost:27017"  
 
-const server = new ApolloServer({
-    typeDefs,
-    resolvers, 
-});
+const server = new ApolloServer({schema});
 
 const context:ContextFunctionType = async ({ req } ) => {
   const token =  req.headers.authorization as string 

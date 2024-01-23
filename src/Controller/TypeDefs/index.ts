@@ -5,6 +5,14 @@ import { TableEnums, TableInputs, TableMutations, TableQueries, TableTypes } fro
  
   
 const typeDefs = `#graphql
+    #customDirectives
+    directive @camelcase on FIELD_DEFINITION
+    directive @snakecase on FIELD_DEFINITION
+    directive @uppercase on FIELD_DEFINITION
+    directive @lowercase on FIELD_DEFINITION
+    directive @money(currency: String) on FIELD_DEFINITION
+    directive @log on FIELD_DEFINITION
+
     #customScalars
     scalar Date
     scalar Url

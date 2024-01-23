@@ -24,13 +24,13 @@ export const TableEnums = `
 
 export const TableTypes = `
     type Table {
-        recipeName: String
+        recipeName: String @uppercase
         ingredients: String
-        instructions: String
+        instructions: String @lowercase
         prepTime: Int
         cookTime: Int
         totalTime: Int
-        calories: Int
+        calories: String @money(currency: "USD")
         cuisine: Cuisine
         difficultyLevel: Level
         isVegetarian: Boolean
