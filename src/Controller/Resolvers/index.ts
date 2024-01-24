@@ -11,6 +11,11 @@ import { image } from "./TypeResolvers/userTypes";
 import { DirResolve } from "./TypeResolvers/DirTypes";
 import { addFile, addFolder } from "./MutationResolvers/MyFilesMutations";
 import { GetMyFiles } from "./QueryResolvers/MyFilesQuery";
+import { PubSub, withFilter } from "graphql-subscriptions";
+import { send } from "./SubcriptionResolvers/ChatSubcription";
+
+const pubsub = new PubSub();
+const MESSAGE = 'MESSAGE'
 
 const resolvers = {
     Date: dateScalar,
@@ -33,7 +38,20 @@ const resolvers = {
         deleteprofile: authenticated(deleteprofile),
         addtabledata: addtabledata,
         addfolder: addFolder,
-        addfile: addFile
+        addfile: addFile,
+        send: send(pubsub, MESSAGE)
+    },
+    Subscription: {
+        recieve: {
+            subscribe: withFilter(
+                () => pubsub.asyncIterator(MESSAGE),
+                (payload, variables) => { 
+                 console.log(payload, variables);
+                 
+                  return true;
+                },
+              ),
+        }
     },
 
     User: {

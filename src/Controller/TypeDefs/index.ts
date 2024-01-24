@@ -1,4 +1,5 @@
 import { AuthInputs, AuthMutations, AuthQueries, AuthTypes } from "./AuthTypeDef";
+import { ChatMutation, ChatSubscription, ChatTypes } from "./ChatTypeDef";
 import { DirEnums, DirInputs, DirMutations, DirQueries, DirTypes } from "./DirectoryTypeDef";
 import { TableEnums, TableInputs, TableMutations, TableQueries, TableTypes } from "./TableTypeDef";
 
@@ -37,6 +38,7 @@ const typeDefs = `#graphql
     ${AuthTypes}
     ${TableTypes}
     ${DirTypes}
+    ${ChatTypes}
     type Book {
         title: String
         author: String
@@ -62,6 +64,10 @@ const typeDefs = `#graphql
         ${AuthMutations}
         ${TableMutations}
         ${DirMutations}
+        ${ChatMutation}
+    }
+    type Subscription {
+        ${ChatSubscription}
     }
 `
 export default typeDefs;
