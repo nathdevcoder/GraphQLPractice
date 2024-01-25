@@ -9,3 +9,10 @@ type chatSendType = {
     to: string
     subject?:string
 }
+
+type notificationType = {
+    message: string
+    title: string
+    image?: string
+    link?: string
+}

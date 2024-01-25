@@ -1,6 +1,7 @@
 import { AuthInputs, AuthMutations, AuthQueries, AuthTypes } from "./AuthTypeDef";
 import { ChatMutation, ChatSubscription, ChatTypes } from "./ChatTypeDef";
 import { DirEnums, DirInputs, DirMutations, DirQueries, DirTypes } from "./DirectoryTypeDef";
+import {  NotifyInputs, NotifyMutation, NotifySubscription, NotifyTypes } from "./NotificationTypeDef";
 import { TableEnums, TableInputs, TableMutations, TableQueries, TableTypes } from "./TableTypeDef";
 
  
@@ -39,6 +40,7 @@ const typeDefs = `#graphql
     ${TableTypes}
     ${DirTypes}
     ${ChatTypes}
+    ${NotifyTypes}
     type Book {
         title: String
         author: String
@@ -48,6 +50,7 @@ const typeDefs = `#graphql
     ${AuthInputs}
     ${TableInputs}
     ${DirInputs}
+    ${NotifyInputs}
     type Response {
         message: String!
         id: String
@@ -65,9 +68,11 @@ const typeDefs = `#graphql
         ${TableMutations}
         ${DirMutations}
         ${ChatMutation}
+        ${NotifyMutation}
     }
     type Subscription {
         ${ChatSubscription}
+        ${NotifySubscription}
     }
 `
 export default typeDefs;

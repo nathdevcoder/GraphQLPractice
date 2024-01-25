@@ -13,9 +13,11 @@ import { addFile, addFolder } from "./MutationResolvers/MyFilesMutations";
 import { GetMyFiles } from "./QueryResolvers/MyFilesQuery";
 import { PubSub } from "graphql-subscriptions";
 import { recieve, send } from "./SubcriptionResolvers/ChatSubcription";
+import { notification, notify } from "./SubcriptionResolvers/NotifySubscription";
 
 const pubsub = new PubSub();
 const MESSAGE = 'MESSAGE'
+const NOTIFICATION = 'NOTIFICATION'
 
 const resolvers = {
     Date: dateScalar,
@@ -39,11 +41,15 @@ const resolvers = {
         addtabledata: addtabledata,
         addfolder: addFolder,
         addfile: addFile,
-        send: send(pubsub, MESSAGE)
+        send: send(pubsub, MESSAGE),
+        notify: notify(pubsub, NOTIFICATION)
     },
     Subscription: {
         recieve: {
-            subscribe: recieve(pubsub, MESSAGE)
+            subscribe: recieve(pubsub, MESSAGE),
+        },
+        notification: {
+            subscribe: notification(pubsub,NOTIFICATION)
         }
     },
 
