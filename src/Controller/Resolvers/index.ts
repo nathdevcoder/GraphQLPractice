@@ -11,8 +11,8 @@ import { image } from "./TypeResolvers/userTypes";
 import { DirResolve } from "./TypeResolvers/DirTypes";
 import { addFile, addFolder } from "./MutationResolvers/MyFilesMutations";
 import { GetMyFiles } from "./QueryResolvers/MyFilesQuery";
-import { PubSub, withFilter } from "graphql-subscriptions";
-import { send } from "./SubcriptionResolvers/ChatSubcription";
+import { PubSub } from "graphql-subscriptions";
+import { recieve, send } from "./SubcriptionResolvers/ChatSubcription";
 
 const pubsub = new PubSub();
 const MESSAGE = 'MESSAGE'
@@ -43,14 +43,7 @@ const resolvers = {
     },
     Subscription: {
         recieve: {
-            subscribe: withFilter(
-                () => pubsub.asyncIterator(MESSAGE),
-                (payload, variables) => { 
-                 console.log(payload, variables);
-                 
-                  return true;
-                },
-              ),
+            subscribe: recieve(pubsub, MESSAGE)
         }
     },
 

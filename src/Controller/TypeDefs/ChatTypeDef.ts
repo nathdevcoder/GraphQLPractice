@@ -4,14 +4,16 @@
 
 export const ChatTypes = `
     type Message {
-        content: String
+        content: String!
+        subject: String
+        room: String!
     }
 `
 
 export const ChatMutation = `
-    send(message: String): Message!
+    send(message: String!, to: String!, subject: String): Message!
 `
 
 export const ChatSubscription = `
-    recieve: Message!
+    recieve(room: String!): Message!
 `

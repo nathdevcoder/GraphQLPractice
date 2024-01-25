@@ -1,5 +1,5 @@
 import { GraphQLFieldResolver } from "graphql";
-import { PubSub } from "graphql-subscriptions";
+import { PubSub, ResolverFn } from "graphql-subscriptions";
 
 type ResolverType<A, R, P = unknown> = GraphQLFieldResolver<P, ContextType, A, Promise<R>>
 
@@ -10,5 +10,7 @@ T extends 'add' ? ResolverType<{ input: Omit<TableDataType, 'id'> }, TableDataTy
 undefined
 
 export type SubcriptionResolver<A,R> = (pubsub: PubSub, key: string) => ResolverType<A, R>
+
+export type SubcriptionType = (pubsub: PubSub, KEY: string) => ResolverFn
 
 export default ResolverType
