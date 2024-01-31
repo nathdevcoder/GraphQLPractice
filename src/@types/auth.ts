@@ -10,6 +10,9 @@ type UserResponseType = Promise<authResponseType>
 
 type ContextType = {
     user: authResponseType
+    token: {
+        csrfToken?: string 
+    }
 }
 
 type UserSchemaType = {

@@ -27,11 +27,12 @@ const wsServer = new WebSocketServer({
 
 
 const context:ContextFunctionType = async ({ req } ) => {
-  if(!req) return {user: null}
-  const token =  req.headers.authorization as string 
-  if(!token) return {user: null}
-  const user = await VerifyAccessToken(token)  
-  return { user }
+  if(!req) return {user: null, token:{}}
+  const accessToken =  req.headers.authorization as string 
+  const csrfToken = req.headers['x-csrf-token'] as string | undefined;
+  if(!accessToken) return {user: null, token:{}}
+  const user = await VerifyAccessToken(accessToken)  
+  return { user, token: {csrfToken} }
 }
 
 const serverCleanup = useServer({ 
