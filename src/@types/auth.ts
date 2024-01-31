@@ -37,6 +37,7 @@ type UserType = {
     description: string
     accessToken: string
     refreshToken: string
+    csrfToken: string
 } 
 
 type AuthInputType = { 
@@ -45,5 +46,5 @@ type AuthInputType = {
     password: string
 } 
 
-type RefreshTokenInputType =  Pick<UserType, 'refreshToken'> 
+type RefreshTokenInputType =  Pick<UserType, 'refreshToken' | 'role'> 
 type RegisterInputType =  Omit<UserSchemaType, 'refreshToken' | 'id' | 'dateCreated' | 'role' > 

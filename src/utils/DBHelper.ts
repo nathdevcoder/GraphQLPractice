@@ -5,7 +5,7 @@ export type DBType<T> = Document<unknown, {}, T> & T & {
   _id: Types.ObjectId;
 }
 
-export function UserResponse(data:DBType<UserSchemaType>, token:Pick<UserType, 'accessToken' | 'refreshToken'>){
+export function UserResponse(data:DBType<UserSchemaType>, token:Pick<UserType, 'accessToken' | 'refreshToken' | 'csrfToken'>){
     return {
         name: data.name,
         email: data.email,  
@@ -16,6 +16,7 @@ export function UserResponse(data:DBType<UserSchemaType>, token:Pick<UserType, '
         id: data._id.toString(),
         accessToken: token.accessToken,
         refreshToken: token.refreshToken,
+        csrfToken: token.csrfToken,
         roles: data.roles
       }
 }

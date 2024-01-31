@@ -40,7 +40,8 @@ export const AuthInputs = `
         role: Role!
     }
     input ReloginInput { 
-        refreshToken: String 
+        refreshToken: String!
+        role: Role!
     }
     input DeleteUserInput {
         id: String
