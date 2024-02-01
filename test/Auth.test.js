@@ -108,6 +108,7 @@ describe("Authentication Testing", () => {
     const variables = {
       input: {
         refreshToken: "JWT Refresh Token",
+        role: 'USER'
       },
     };
     const response = await createTestServerWithMock({
