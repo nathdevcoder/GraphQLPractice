@@ -20,7 +20,7 @@ export const login:AuthResolverType = async (_, {input}) => {
     if (!isEqual) throw WrongPasswordError;
     const {accessToken, refreshToken, csrfToken} = CreateToken(data); 
     if (!accessToken || !refreshToken) throw InternalServerError;
-    const user = await LoginUser(data._id, refreshToken)
+    const user = await LoginUser(data._id, refreshToken, input.role)
     if(!user) throw BadGateway;  
     return  UserResponse(user, {accessToken, refreshToken, csrfToken})
 
@@ -32,7 +32,7 @@ export const signup:AuthResolverType<'register'> = async (_, {input}) => {
     if (!data) throw BadGateway;
     const {accessToken, refreshToken, csrfToken} = CreateToken(data); 
     if (!accessToken || !refreshToken) throw InternalServerError;
-    const user = await LoginUser(data._id, refreshToken)
+    const user = await LoginUser(data._id, refreshToken, 'USER')
     if(!user) throw BadGateway;
     return UserResponse(user, {accessToken, refreshToken, csrfToken})
 

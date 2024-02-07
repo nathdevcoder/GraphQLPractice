@@ -12,6 +12,7 @@ export const AuthTypes = `
         description: String
         accessToken: String
         refreshToken: String
+        csrfToken: String
     }
     type User {
         id: String!

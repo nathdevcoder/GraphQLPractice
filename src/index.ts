@@ -36,8 +36,8 @@ const context:ContextFunctionType = async ({ req } ) => {
 }
 
 const serverCleanup = useServer({ 
-  schema, 
-  context,
+  schema,
+  context
  }, 
  wsServer
 );
@@ -66,7 +66,7 @@ const server = new ApolloServer({
     await mongoose.connect(database )
     console.log(`connected to ${database} database`); 
     await server.start();
-    app.use('/graphql', cors<cors.CorsRequest>(), express.json(), expressMiddleware(server)); 
+    app.use('/graphql', cors<cors.CorsRequest>(), express.json(), expressMiddleware(server, {context})); 
     httpServer.listen(PORT, () => {
       console.log(`Server is now running on http://localhost:${PORT}/graphql`);
     });  

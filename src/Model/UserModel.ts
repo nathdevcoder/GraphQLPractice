@@ -66,8 +66,8 @@ export async function GetUserByEmail(email: string) {
   return await User.findOne({email})
 } 
 
-export async function LoginUser(id: Types.ObjectId, refreshToken: string) {
-  return await User.findByIdAndUpdate(id, {refreshToken})
+export async function LoginUser(id: Types.ObjectId, refreshToken: string, role: RoleType) {
+  return await User.findByIdAndUpdate(id, {refreshToken, role})
 } 
 
 export async function LogoutUser(id: string) {
